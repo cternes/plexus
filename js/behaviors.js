@@ -12,6 +12,8 @@
     });
     
     //move an entity in a direction as long as possible
+    //requirements:
+    //              -entity needs to have a property direction {left,right,up,down}
     Q.component('movingStraight', {
         added: function() {
             var entity = this.entity;
@@ -53,18 +55,27 @@
     });
     
     //shoot in the direction of walking
+    //requirements:
+    //              -entity should move on x-axis
+    //              -entity should have a property shootingDelay (frames between shots)
     Q.component('shooting', {
         added: function() {
             var entity = this.entity;
             entity.p.frameCount = 0;
             entity.p.lastX = 0;
+            
+            //if property shootingDelay is not defined, we set the delay to 100 (shoots every 100 frames)
+            if(entity.p.shootingDelay === undefined) {
+                entity.p.shootingDelay = 100; 
+            }
+            
             entity.on('step', this, 'step');
         },
         step: function(dt) {
             var p = this.entity.p;
             
             p.frameCount++;
-            if(p.frameCount % 100 === 0) {
+            if(p.frameCount % p.shootingDelay === 0) {
                 //calculate the walking direction 
                 if(p.x > p.lastX) {
                     p.direction = 'right';

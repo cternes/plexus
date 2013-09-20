@@ -118,7 +118,7 @@
                     stage.insert(new Q.Star({x: 800, y: 0}));
                     
                     // Add in a couple of enemies
-                    stage.insert(new Q.ShootingEnemy({x: 900, y: 210}));
+                    stage.insert(new Q.ShootingEnemy({x: 900, y: 210, shootingDelay: 100}));
 
                     // test
                     //stage.insert(new Q.Shot({x: 800, y: 200, direction: 'left'}));
@@ -127,9 +127,9 @@
                     stage.insert(new Q.Tower({x: 180, y: 50}));
                 });
 
-// To display a game over / game won popup box, 
-// create a endGame scene that takes in a `label` option
-// to control the displayed message.
+                // To display a game over / game won popup box, 
+                // create a endGame scene that takes in a `label` option
+                // to control the displayed message.
                 Q.scene('endGame', function(stage) {
                     var container = stage.insert(new Q.UI.Container({
                         x: Q.width / 2, y: Q.height / 2, fill: "rgba(0,0,0,0.5)"
@@ -151,7 +151,7 @@
                 });
 
                 // Q.load can be called at any time to load additional assets
-// assets that are already loaded will be skipped
+                // assets that are already loaded will be skipped
                 Q.load("sprites.png, sprites.json, level.json, tiles.png",
                         // The callback will be triggered when everything is loaded
                                 function() {
