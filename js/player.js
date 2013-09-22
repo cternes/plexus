@@ -11,7 +11,7 @@ Quintus.Player = function(Q) {
                 y: 700, // starting location y
                 stars: 0,
                 jumpSpeed: -500,
-                speed: 300,
+                speed: 300, //300
                 gravity: 1.2,
             });
 
@@ -24,7 +24,7 @@ Quintus.Player = function(Q) {
             //hit.sprite is called everytime the player collides with a sprite
             this.on("hit.sprite", function(collision) {
                 // Check the collision, if it's the Tower, you win!
-                if (collision.obj.isA("Tower")) {
+                if (collision.obj.isA("Door")) {
                     // Stage the endGame scene above the current stage
                     Q.stageScene("endGame", 1, {label: "You Won!"});
                     // Remove the player to prevent them from moving

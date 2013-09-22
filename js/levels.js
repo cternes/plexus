@@ -22,12 +22,12 @@ Quintus.Levels = function(Q) {
         stage.insert(new Q.Star({x: 800, y: 0}));
 
         // Add in a couple of enemies
-        stage.insert(new Q.Snail({x: 900, y: 210, shootingDelay: 100}));
+        //stage.insert(new Q.Snail({x: 900, y: 210, shootingDelay: 100}));
 
         // test
         //stage.insert(new Q.Shot({x: 800, y: 200, direction: 'left'}));
 
-        // Finally add in the tower goal
-        stage.insert(new Q.Tower({x: 180, y: 50}));
+        // Finally add in the door goal
+        stage.insert(new Q.Door({x: 6700, y: 925}));
     });
 }

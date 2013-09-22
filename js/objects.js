@@ -1,9 +1,9 @@
 ;
 Quintus.Objects = function(Q) {
-    //------------TOWER--------------
-    Q.Sprite.extend("Tower", {
+    //------------Door--------------
+    Q.Sprite.extend("Door", {
         init: function(p) {
-            this._super(p, {sheet: 'tower'});
+            this._super(p, {sheet: 'door'});
         }
     });
 
