@@ -28,11 +28,8 @@
                             speed: 300,
                         });
 
-                        // Add in pre-made components to get up and running quickly
-                        this.add('2d, platformerControls');
-
-                        //Adding animations
-                        this.add("animation");
+                        // Add in gravity, controls and animation
+                        this.add('2d, platformerControls, animation');
 
                         // Write event handlers to respond hook into behaviors.
                         // hit.sprite is called everytime the player collides with a sprite
@@ -50,7 +47,7 @@
                         if (this.p.vx > 0) {
                             this.play("run_right");
                         } else if (this.p.vx < 0) {
-                            this.play("run_right");
+                            this.play("run_left");
                         }
                         else {
                             this.play("stand");
@@ -60,6 +57,7 @@
 
                 Q.animations('player', {
                     run_right: {frames: [1, 2], rate: 1/5},
+                    run_left: {frames: [3, 4], rate: 1/5},
                     stand: {frames: [0], rate: 1/5}
                 });
 
@@ -111,12 +109,28 @@
                     }
                 });
 
-                Q.Sprite.extend("ShootingEnemy", {
+                Q.Sprite.extend("Snail", {
                     init: function(p) {
-                        this._super(p, {sheet: 'enemy', vx: 100});
+                        this._super(p, {
+                            sheet: 'snailWalk',
+                            sprite: "snailWalk", // Setting the animation sprites
+                            vx: 30
+                        });
 
-                        this.add('2d, aiBounce, shooting, stompable');
+                        this.add('2d, animation, aiBounce, stompable');
+                    },
+                    step: function(dt) {
+                        if (this.p.vx >= 0) {
+                            this.play("run_left");
+                        } else if (this.p.vx < 0) {
+                            this.play("run_right");
+                        }
                     }
+                });
+                
+                Q.animations('snailWalk', {
+                    run_right: {frames: [0, 1], rate: 1},
+                    run_left: {frames: [2, 3], rate: 1},
                 });
 
                 // Create a new scene called level 1
@@ -141,7 +155,7 @@
                     stage.insert(new Q.Star({x: 800, y: 0}));
 
                     // Add in a couple of enemies
-                    //stage.insert(new Q.ShootingEnemy({x: 900, y: 210, shootingDelay: 100}));
+                    stage.insert(new Q.Snail({x: 900, y: 210, shootingDelay: 100}));
 
                     // test
                     //stage.insert(new Q.Shot({x: 800, y: 200, direction: 'left'}));
