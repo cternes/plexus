@@ -2,6 +2,10 @@
     <head>
         <script src='http://cdn.html5quintus.com/v0.1.5/quintus-all.min.js'></script>
         <script src="js/behaviors.js"></script>
+        <script src="js/player.js"></script>
+        <script src="js/enemies.js"></script>
+        <script src="js/objects.js"></script>
+        <script src="js/levels.js"></script>
     </head>
     <body>
         <script>
@@ -9,160 +13,10 @@
 
                 var Q = Quintus()                          // Create a new engine instance
                         .include("Sprites, Anim, Scenes, Input, 2D, Touch, UI") // Load any needed modules
-                        .include("Behaviors")
+                        .include("Behaviors, Player, Enemies, Objects, Levels")
                         .setup({maximize: true})         // Add a canvas element onto the page
                         .controls()                        // Add in default controls (keyboard, buttons)
                         .touch();                          // Add in touch support (for the UI)
-
-                Q.Sprite.extend("Player", {
-                    // the init constructor is called on creation
-                    init: function(p) {
-
-                        this._super(p, {
-                            sheet: "player", // Setting a sprite sheet sets sprite width and height
-                            sprite: "player", // Setting the animation sprites
-                            x: 80, // You can also set additional properties that can
-                            y: 700, // be overridden on object creation
-                            stars: 0,
-                            jumpSpeed: -500,
-                            speed: 300,
-                        });
-
-                        // Add in gravity, controls and animation
-                        this.add('2d, platformerControls, animation');
-
-                        // Write event handlers to respond hook into behaviors.
-                        // hit.sprite is called everytime the player collides with a sprite
-                        this.on("hit.sprite", function(collision) {
-                            // Check the collision, if it's the Tower, you win!
-                            if (collision.obj.isA("Tower")) {
-                                // Stage the endGame scene above the current stage
-                                Q.stageScene("endGame", 1, {label: "You Won!"});
-                                // Remove the player to prevent them from moving
-                                this.destroy();
-                            }
-                        });
-                    },
-                    step: function(dt) {
-                        if (this.p.vx > 0) {
-                            this.play("run_right");
-                        } else if (this.p.vx < 0) {
-                            this.play("run_left");
-                        }
-                        else {
-                            this.play("stand");
-                        }
-                    }
-                });
-
-                Q.animations('player', {
-                    run_right: {frames: [1, 2], rate: 1/5},
-                    run_left: {frames: [3, 4], rate: 1/5},
-                    stand: {frames: [0], rate: 1/5}
-                });
-
-                // Sprites can be simple, the Tower sprite just sets a custom sprite sheet
-                Q.Sprite.extend("Tower", {
-                    init: function(p) {
-                        this._super(p, {sheet: 'tower'});
-                    }
-                });
-
-                Q.Sprite.extend("Star", {
-                    init: function(p) {
-                        this._super(p, {sheet: 'enemy', vx: 0});
-
-                        this.add('collectable');
-
-                        this.on('hit', function(collision) {
-                            if (collision.obj.isA("Player")) {
-                                collision.obj.p.stars += 1;
-                            }
-                        });
-                    }
-                });
-
-                Q.Sprite.extend("Shot", {
-                    init: function(p) {
-                        this._super(p, {w: 3, h: 3, vx: 300, vy: 300});
-
-                        //this moves the shot straightly based on p.direction 
-                        this.add('movingStraight');
-
-                        this.on('hit', function(collision) {
-                            //if the shot collides with an object it will be removed
-                            this.destroy();
-
-                            //if the shot collides with the player, the player is dead
-                            if (collision.obj.isA("Player")) {
-                                Q.stageScene("endGame", 1, {label: "You Died"});
-                                collision.obj.destroy();
-                            }
-                        });
-                    },
-                    draw: function(ctx) {
-                        //render a shot as a 3x3px box
-                        ctx.fillStyle = "grey";
-                        ctx.beginPath();
-                        ctx.fillRect(-this.p.cx, -this.p.cy, 3, 3);
-                        ctx.fill();
-                    }
-                });
-
-                Q.Sprite.extend("Snail", {
-                    init: function(p) {
-                        this._super(p, {
-                            sheet: 'snailWalk',
-                            sprite: "snailWalk", // Setting the animation sprites
-                            vx: 30
-                        });
-
-                        this.add('2d, animation, aiBounce, stompable');
-                    },
-                    step: function(dt) {
-                        if (this.p.vx >= 0) {
-                            this.play("run_left");
-                        } else if (this.p.vx < 0) {
-                            this.play("run_right");
-                        }
-                    }
-                });
-                
-                Q.animations('snailWalk', {
-                    run_right: {frames: [0, 1], rate: 1},
-                    run_left: {frames: [2, 3], rate: 1},
-                });
-
-                // Create a new scene called level 1
-                Q.scene("level1", function(stage) {
-
-                    // Add in a tile layer, and make it the collision layer
-                    stage.collisionLayer(new Q.TileLayer({
-                        dataAsset: 'level1.tmx',
-                        sheet: 'tiles',
-                        tileW: 70,
-                        tileH: 70}));
-
-                    // Create the player and add him to the stage
-                    var player = stage.insert(new Q.Player());
-
-                    // Give the stage a moveable viewport and tell it
-                    // to follow the player.
-                    stage.add("viewport").follow(player);
-
-                    // Add in a couple of stars
-                    //stage.insert(new Q.Star({x: 700, y: 210}));
-                    stage.insert(new Q.Star({x: 800, y: 0}));
-
-                    // Add in a couple of enemies
-                    stage.insert(new Q.Snail({x: 900, y: 210, shootingDelay: 100}));
-
-                    // test
-                    //stage.insert(new Q.Shot({x: 800, y: 200, direction: 'left'}));
-
-                    // Finally add in the tower goal
-                    stage.insert(new Q.Tower({x: 180, y: 50}));
-                });
 
                 // To display a game over / game won popup box, 
                 // create a endGame scene that takes in a `label` option

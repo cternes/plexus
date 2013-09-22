@@ -1,0 +1,49 @@
+;
+Quintus.Player = function(Q) {
+    Q.Sprite.extend("Player", {
+        // the init constructor is called on creation
+        init: function(p) {
+
+            this._super(p, {
+                sheet: "player", // Setting a sprite sheet sets sprite width and height
+                sprite: "player", // Setting the animation sprites
+                x: 80, // starting location x
+                y: 700, // starting location y
+                stars: 0,
+                jumpSpeed: -500,
+                speed: 300,
+            });
+
+            //add in gravity, controls and animation
+            this.add('2d, platformerControls, animation');
+
+            //hit.sprite is called everytime the player collides with a sprite
+            this.on("hit.sprite", function(collision) {
+                // Check the collision, if it's the Tower, you win!
+                if (collision.obj.isA("Tower")) {
+                    // Stage the endGame scene above the current stage
+                    Q.stageScene("endGame", 1, {label: "You Won!"});
+                    // Remove the player to prevent them from moving
+                    this.destroy();
+                }
+            });
+        },
+        step: function(dt) {
+            if (this.p.vx > 0) {
+                this.play("run_right");
+            } else if (this.p.vx < 0) {
+                this.play("run_left");
+            }
+            else {
+                this.play("stand");
+            }
+        }
+    });
+
+    //register player animations
+    Q.animations('player', {
+        run_right: {frames: [1, 2], rate: 1 / 5},
+        run_left: {frames: [3, 4], rate: 1 / 5},
+        stand: {frames: [0], rate: 1 / 5}
+    });
+}
