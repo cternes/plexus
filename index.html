@@ -8,7 +8,7 @@
             window.addEventListener('load', function() {
 
                 var Q = Quintus()                          // Create a new engine instance
-                        .include("Sprites, Scenes, Input, 2D, Touch, UI") // Load any needed modules
+                        .include("Sprites, Anim, Scenes, Input, 2D, Touch, UI") // Load any needed modules
                         .include("Behaviors")
                         .setup({maximize: true})         // Add a canvas element onto the page
                         .controls()                        // Add in default controls (keyboard, buttons)
@@ -20,15 +20,19 @@
 
                         this._super(p, {
                             sheet: "player", // Setting a sprite sheet sets sprite width and height
+                            sprite: "player", // Setting the animation sprites
                             x: 80, // You can also set additional properties that can
-                            y: 700,            // be overridden on object creation
+                            y: 700, // be overridden on object creation
                             stars: 0,
-                            jumpSpeed: -600,
-                            speed: 400,
+                            jumpSpeed: -500,
+                            speed: 300,
                         });
-                        
+
                         // Add in pre-made components to get up and running quickly
                         this.add('2d, platformerControls');
+
+                        //Adding animations
+                        this.add("animation");
 
                         // Write event handlers to respond hook into behaviors.
                         // hit.sprite is called everytime the player collides with a sprite
@@ -41,7 +45,22 @@
                                 this.destroy();
                             }
                         });
+                    },
+                    step: function(dt) {
+                        if (this.p.vx > 0) {
+                            this.play("run_right");
+                        } else if (this.p.vx < 0) {
+                            this.play("run_right");
+                        }
+                        else {
+                            this.play("stand");
+                        }
                     }
+                });
+
+                Q.animations('player', {
+                    run_right: {frames: [1, 2], rate: 1/5},
+                    stand: {frames: [0], rate: 1/5}
                 });
 
                 // Sprites can be simple, the Tower sprite just sets a custom sprite sheet
@@ -56,7 +75,7 @@
                         this._super(p, {sheet: 'enemy', vx: 0});
 
                         this.add('collectable');
-                        
+
                         this.on('hit', function(collision) {
                             if (collision.obj.isA("Player")) {
                                 collision.obj.p.stars += 1;
@@ -64,38 +83,38 @@
                         });
                     }
                 });
-                
+
                 Q.Sprite.extend("Shot", {
-                   init: function(p) {
-                       this._super(p, {w: 3, h: 3, vx: 300, vy: 300});
-                       
-                       //this moves the shot straightly based on p.direction 
-                       this.add('movingStraight');
-                       
-                       this.on('hit', function(collision) {
-                           //if the shot collides with an object it will be removed
+                    init: function(p) {
+                        this._super(p, {w: 3, h: 3, vx: 300, vy: 300});
+
+                        //this moves the shot straightly based on p.direction 
+                        this.add('movingStraight');
+
+                        this.on('hit', function(collision) {
+                            //if the shot collides with an object it will be removed
                             this.destroy();
-                            
+
                             //if the shot collides with the player, the player is dead
-                            if(collision.obj.isA("Player")) {
-                                Q.stageScene("endGame",1, { label: "You Died" }); 
-                                collision.obj.destroy();    
+                            if (collision.obj.isA("Player")) {
+                                Q.stageScene("endGame", 1, {label: "You Died"});
+                                collision.obj.destroy();
                             }
                         });
-                   },
-                   draw: function(ctx) {
+                    },
+                    draw: function(ctx) {
                         //render a shot as a 3x3px box
                         ctx.fillStyle = "grey";
                         ctx.beginPath();
-                        ctx.fillRect(-this.p.cx ,-this.p.cy , 3, 3);
+                        ctx.fillRect(-this.p.cx, -this.p.cy, 3, 3);
                         ctx.fill();
-                   }
+                    }
                 });
-                
+
                 Q.Sprite.extend("ShootingEnemy", {
                     init: function(p) {
                         this._super(p, {sheet: 'enemy', vx: 100});
-                        
+
                         this.add('2d, aiBounce, shooting, stompable');
                     }
                 });
@@ -120,9 +139,9 @@
                     // Add in a couple of stars
                     //stage.insert(new Q.Star({x: 700, y: 210}));
                     stage.insert(new Q.Star({x: 800, y: 0}));
-                    
+
                     // Add in a couple of enemies
-                    stage.insert(new Q.ShootingEnemy({x: 900, y: 210, shootingDelay: 100}));
+                    //stage.insert(new Q.ShootingEnemy({x: 900, y: 210, shootingDelay: 100}));
 
                     // test
                     //stage.insert(new Q.Shot({x: 800, y: 200, direction: 'left'}));
