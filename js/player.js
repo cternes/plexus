@@ -11,7 +11,8 @@ Quintus.Player = function(Q) {
                 y: 700, // starting location y
                 stars: 0,
                 jumpSpeed: -500,
-                speed: 300
+                speed: 300,
+                gravity: 1.2,
             });
 
             //fix sprite height
