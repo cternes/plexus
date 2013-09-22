@@ -26,6 +26,8 @@ Quintus.Objects = function(Q) {
     Q.Sprite.extend("Water", {
         init: function(p) {
             this._super(p, {sheet: 'water'});
+            
+            this.add('deadly');
         }
         
     });

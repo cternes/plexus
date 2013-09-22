@@ -116,5 +116,16 @@
             });
         }
     });
+    
+    Q.component('deadly', {
+        added: function() {
+            this.entity.on("hit", function(collision) {
+                if(collision.obj.isA("Player")) { 
+                    Q.stageScene("endGame",1, { label: "You Died" }); 
+                    collision.obj.destroy();
+                }
+            });
+        }
+    });
 
 };
