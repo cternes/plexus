@@ -1,6 +1,6 @@
 ;
 Quintus.Objects = function(Q) {
-    //------------Door--------------
+    //------------DOOR--------------
     Q.Sprite.extend("Door", {
         init: function(p) {
             this._super(p, {sheet: 'door'});
@@ -20,5 +20,13 @@ Quintus.Objects = function(Q) {
                 }
             });
         }
+    });
+    
+    //----------WATER--------------
+    Q.Sprite.extend("Water", {
+        init: function(p) {
+            this._super(p, {sheet: 'water'});
+        }
+        
     });
 }

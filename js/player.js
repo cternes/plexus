@@ -30,6 +30,11 @@ Quintus.Player = function(Q) {
                     // Remove the player to prevent them from moving
                     this.destroy();
                 }
+                
+                if(collision.obj.isA("Water")) { 
+                    Q.stageScene("endGame",1, { label: "You Died" }); 
+                    this.destroy();
+                }
             });
         },
         step: function(dt) {

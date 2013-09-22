@@ -31,6 +31,11 @@ Quintus.Levels = function(Q) {
         // test
         //stage.insert(new Q.Shot({x: 800, y: 200, direction: 'left'}));
 
+        //add water
+        stage.insert(new Q.Water({x: 3115, y: 1028}))
+        stage.insert(new Q.Water({x: 4095, y: 1028}))
+        stage.insert(new Q.Water({x: 4165, y: 1028}))
+
         // Finally add in the door goal
         stage.insert(new Q.Door({x: 6700, y: 925}));
     });
