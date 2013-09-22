@@ -1,1 +1,1 @@
-{"enemy":{"tileh":24,"cols":1,"frames":1,"sy":0,"tilew":30,"sx":0},"tower":{"tileh":30,"cols":1,"frames":1,"sy":24,"tilew":30,"sx":0},"player":{"tileh":94,"cols":5,"frames":5,"sy":54,"tilew":70,"sx":0},"snailWalk":{"tileh":31,"cols":4,"frames":4,"sy":148,"tilew":54,"sx":0}}
+{"enemy":{"tileh":24,"cols":1,"frames":1,"sy":0,"tilew":30,"sx":0},"tower":{"tileh":30,"cols":1,"frames":1,"sy":24,"tilew":30,"sx":0},"player":{"tileh":97,"cols":11,"frames":11,"sy":54,"tilew":72,"sx":0},"snailWalk":{"tileh":31,"cols":4,"frames":4,"sy":151,"tilew":54,"sx":0}}

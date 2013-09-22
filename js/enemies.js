@@ -8,6 +8,9 @@ Quintus.Enemies = function(Q) {
                 sprite: "snailWalk", // Setting the animation sprites
                 vx: 30
             });
+            
+            //fix sprite height
+            this.p.h--;
 
             //add in gravity, basic AI, stompable and animation
             this.add('2d, animation, aiBounce, stompable');

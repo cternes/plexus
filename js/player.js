@@ -11,8 +11,11 @@ Quintus.Player = function(Q) {
                 y: 700, // starting location y
                 stars: 0,
                 jumpSpeed: -500,
-                speed: 300,
+                speed: 300
             });
+
+            //fix sprite height
+            this.p.h--;
 
             //add in gravity, controls and animation
             this.add('2d, platformerControls, animation');
@@ -29,7 +32,13 @@ Quintus.Player = function(Q) {
             });
         },
         step: function(dt) {
-            if (this.p.vx > 0) {
+            if((this.p.vy < 0 || this.p.vy > 0) && this.p.vx > 0) {
+                this.play("jump_right");
+            }
+            else if((this.p.vy < 0 || this.p.vy > 0) && this.p.vx < 0) {
+                this.play("jump_left");
+            }
+            else if (this.p.vx > 0) {
                 this.play("run_right");
             } else if (this.p.vx < 0) {
                 this.play("run_left");
@@ -42,8 +51,10 @@ Quintus.Player = function(Q) {
 
     //register player animations
     Q.animations('player', {
-        run_right: {frames: [1, 2], rate: 1 / 5},
-        run_left: {frames: [3, 4], rate: 1 / 5},
-        stand: {frames: [0], rate: 1 / 5}
+        run_right: {frames: [1, 2, 3, 4], rate: 1 / 5},
+        run_left: {frames: [5, 6, 7, 8], rate: 1 / 5},
+        stand: {frames: [0], rate: 1 / 5},
+        jump_right: {frames: [9], rate: 1 / 5},
+        jump_left: {frames: [10], rate: 1 / 5},
     });
 }
