@@ -48,6 +48,10 @@ Quintus.Player = function(Q) {
             else {
                 this.play("stand");
             }
+            
+            if(this.p.landed > 0 && (Q.inputs['up'] || Q.inputs['action'])) {
+                Q.audio.play('jump.mp3');
+            }
         }
     });
 
@@ -59,4 +63,5 @@ Quintus.Player = function(Q) {
         jump_right: {frames: [9], rate: 1 / 5},
         jump_left: {frames: [10], rate: 1 / 5},
     });
+    
 }
