@@ -15,6 +15,9 @@ Quintus.Player = function(Q) {
                 gravity: 1.2,
             });
 
+            //fix sprite width
+            this.p.w = this.p.w - 2;
+
             //fix sprite height
             this.p.h--;
 

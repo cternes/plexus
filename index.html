@@ -44,7 +44,7 @@
 
                 // Q.load can be called at any time to load additional assets
                 // assets that are already loaded will be skipped
-                Q.load("sprites.png, sprites.json, level1.tmx, tileset.png, background-sky.png, jump.mp3",
+                Q.load("sprites.png, sprites.json, level1.tmx, level2.tmx, tileset.png, background-sky.png, jump.mp3",
                         // The callback will be triggered when everything is loaded
                                 function() {
                                     // Sprites sheets can be created manually
@@ -54,7 +54,7 @@
                                     Q.compileSheets("sprites.png", "sprites.json");
 
                                     // Finally, call stageScene to run the game
-                                    Q.stageScene("level1");
+                                    Q.stageScene("level2");
                                 });
 
                         window.Q = Q;
