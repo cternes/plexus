@@ -15,9 +15,27 @@
                         .include("Sprites, Anim, Scenes, Input, 2D, Touch, UI, Audio") // Load any needed modules
                         .include("Behaviors, Player, Enemies, Objects, Levels")
                         .setup({maximize: true})         // Add a canvas element onto the page
-                        .controls()                        // Add in default controls (keyboard, buttons)
+                        //.controls()                        // Add in default controls (keyboard, buttons)
                         .touch()                          // Add in touch support (for the UI)
                         .enableSound();
+
+                Q.input.keyboardControls({
+                    LEFT: "left",
+                    RIGHT: "right",
+                    UP: "up",
+                    78: "nextLevel", //N
+                    66: "prevLevel", //B
+                });
+                
+                Q.input.on("nextLevel",this,function() {
+                    //load next level
+                    Q.state.trigger('nextLevel');
+                });
+                
+                Q.input.on("prevLevel",this,function() {
+                    //load prev level
+                    Q.state.trigger('prevLevel');
+                });
 
                 // To display a game over / game won popup box, 
                 // create a endGame scene that takes in a `label` option
@@ -54,7 +72,7 @@
                                     Q.compileSheets("sprites.png", "sprites.json");
 
                                     // Finally, call stageScene to run the game
-                                    Q.stageScene("level2");
+                                    Q.stageScene("level1");
                                 });
 
                         window.Q = Q;

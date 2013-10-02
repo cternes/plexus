@@ -1,5 +1,7 @@
 ;
 Quintus.Levels = function(Q) {
+    Q.state.set("level", 1);
+    
     //-------------LEVEL1---------------
     Q.scene("level1", function(stage) {
 
@@ -34,6 +36,9 @@ Quintus.Levels = function(Q) {
 
         // Finally add in the door goal
         stage.insert(new Q.Door({x: 6700, y: 925}));
+        
+        //next level
+        stage.on("complete", function() { Q.stageScene("level2"); });
     });
     
     //-------------LEVEL2---------------
@@ -75,4 +80,22 @@ Quintus.Levels = function(Q) {
         // Finally add in the door goal
         stage.insert(new Q.Door({x: 6700, y: 925}));
     });
+    
+    //-------------CHANGE LEVEL BEHAVIOR---------------
+    Q.state.on("nextLevel",this, function() {
+        var level = Q.state.get("level");
+        level += 1;
+        changeLevel(level);
+    });
+    
+    Q.state.on("prevLevel",this, function() {
+        var level = Q.state.get("level");
+        level -= 1;
+        changeLevel(level);
+    });
+    
+    function changeLevel(levelIdx) {
+        Q.state.set("level", levelIdx);
+        Q.stageScene("level" + levelIdx);
+    }
 }

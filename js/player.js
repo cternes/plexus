@@ -30,6 +30,10 @@ Quintus.Player = function(Q) {
                 if (collision.obj.isA("Door")) {
                     // Stage the endGame scene above the current stage
                     Q.stageScene("endGame", 1, {label: "You Won!"});
+                    
+                    //fire complete event
+                    this.stage.trigger("complete");
+                    
                     // Remove the player to prevent them from moving
                     this.destroy();
                 }
