@@ -13,6 +13,7 @@ Quintus.Player = function(Q) {
                 jumpSpeed: -500,
                 speed: 300, //300
                 gravity: 1.2,
+                type: Q.SPRITE_FRIENDLY,
             });
 
             //fix sprite width

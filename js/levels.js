@@ -1,6 +1,6 @@
 ;
 Quintus.Levels = function(Q) {
-    Q.state.set("level", 1);
+    Q.state.set("level", 2);
     
     //-------------LEVEL1---------------
     Q.scene("level1", function(stage) {
@@ -37,6 +37,8 @@ Quintus.Levels = function(Q) {
 
         //add in a couple of enemies
         stage.insert(new Q.Snail({x: 1530, y: 210 }));
+        stage.insert(new Q.Snail({x: 2860, y: 1000 }));
+        stage.insert(new Q.Snail({x: 3000, y: 1000 }));
 
         // test
         //stage.insert(new Q.Shot({x: 800, y: 200, direction: 'left'}));

@@ -5,8 +5,10 @@ Quintus.Enemies = function(Q) {
         init: function(p) {
             this._super(p, {
                 sheet: 'snailWalk',
-                sprite: "snailWalk", // Setting the animation sprites
-                vx: 30
+                sprite: "snailWalk", //setting the animation sprites
+                type: Q.SPRITE_ENEMY,
+                collisionMask: Q.SPRITE_DEFAULT | Q.SPRITE_FRIENDLY, //collide only with tile layer and player
+                vx: 30 //speed
             });
             
             //fix sprite height
