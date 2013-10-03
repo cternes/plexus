@@ -26,15 +26,11 @@ Quintus.Player = function(Q) {
 
             //hit.sprite is called everytime the player collides with a sprite
             this.on("hit.sprite", function(collision) {
-                // Check the collision, if it's the Tower, you win!
                 if (collision.obj.isA("Door")) {
-                    // Stage the endGame scene above the current stage
-                    Q.stageScene("endGame", 1, {label: "You Won!"});
-                    
                     //fire complete event
                     this.stage.trigger("complete");
                     
-                    // Remove the player to prevent them from moving
+                    //remove the player to prevent them from moving
                     this.destroy();
                 }
                 
