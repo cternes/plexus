@@ -11,9 +11,9 @@ Quintus.Levels = function(Q) {
         var player = stage.insert(new Q.Player());
         
         //add water
-        stage.insert(new Q.Water({x: 3115, y: 1028}))
-        stage.insert(new Q.Water({x: 4095, y: 1028}))
-        stage.insert(new Q.Water({x: 4165, y: 1028}))
+        stage.insert(new Q.Water({x: 3115, y: 1028}));
+        stage.insert(new Q.Water({x: 4095, y: 1028}));
+        stage.insert(new Q.Water({x: 4165, y: 1028}));
         
         //finally add in the door goal
         stage.insert(new Q.Door({x: 6700, y: 925}));
@@ -49,11 +49,8 @@ Quintus.Levels = function(Q) {
     });
     
     function setupLevelChange(stage) {
-        var level = Q.state.get("level");
-        level += 1;
-        
         //next level
-        stage.on("complete", function() { changeLevel(level) });
+        stage.on("complete", function() { Q.state.trigger('nextLevel'); });
     }
     
     function setupViewport(stage, player) {
@@ -85,6 +82,10 @@ Quintus.Levels = function(Q) {
         var level = Q.state.get("level");
         level -= 1;
         changeLevel(level);
+    });
+    
+    Q.state.on("restartLevel", this, function() {
+        changeLevel(Q.state.get("level"));
     });
     
     function changeLevel(levelIdx) {
