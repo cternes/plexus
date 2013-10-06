@@ -31,6 +31,24 @@ Quintus.Enemies = function(Q) {
         run_right: {frames: [0, 1], rate: 1},
         run_left: {frames: [2, 3], rate: 1},
     });
+    
+    //-----------FLY---------------
+    Q.Sprite.extend("Fly", {
+        init: function(p) {
+            this._super(p, {
+                sheet: 'snailWalk',
+                sprite: "snailWalk", //setting the animation sprites
+                type: Q.SPRITE_ENEMY,
+                collisionMask: Q.SPRITE_DEFAULT | Q.SPRITE_FRIENDLY, //collide only with tile layer and player
+                vy: 150, //speed
+                rangeY: 100, //range
+                gravity: 0
+            });
+
+            //add in gravity, stompable and animation
+            this.add('2d, animation, stompable, flyingVertical');
+        }
+    });
 
     //-----------SHOT---------------
     Q.Sprite.extend("Shot", {
@@ -53,4 +71,5 @@ Quintus.Enemies = function(Q) {
             ctx.fill();
         }
     });
+    
 }

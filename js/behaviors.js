@@ -127,5 +127,32 @@
             });
         }
     });
+    
+    //entity will move vertically (up & down) in a defined range
+    //requirements:
+    //              -entity should have gravity: 0
+    //              -entity must have a property rangeY which defines the vertical range (default 100)
+    Q.component('flyingVertical', {
+        added: function() {
+            var entity = this.entity;
+            entity.p.initialY = entity.p.y; //store initial y position
+            
+            if(entity.p.rangeY === undefined) {
+                entity.p.rangeY = 100; 
+            }
+            
+            entity.on('step', this, 'step');
+        },
+        step: function() {
+            var p = this.entity.p;
+    
+            if(p.y - p.initialY >= p.rangeY && p.vy > 0) {
+                p.vy = -p.vy;
+            } 
+            else if(-p.y + p.initialY >= p.rangeY && p.vy < 0) {
+                p.vy = -p.vy;
+            }
+        }
+    });
 
 };
