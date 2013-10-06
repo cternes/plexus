@@ -11,7 +11,7 @@ Quintus.Player = function(Q) {
                 y: 1700, // starting location y
                 stars: 0,
                 jumpSpeed: -500,
-                speed: 700, //300
+                speed: 300, //300
                 gravity: 1.2,
                 type: Q.SPRITE_FRIENDLY,
             });
