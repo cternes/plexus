@@ -5,7 +5,7 @@ Quintus.Enemies = function(Q) {
         init: function(p) {
             this._super(p, {
                 sheet: 'snailWalk',
-                sprite: "snailWalk", //setting the animation sprites
+                sprite: 'snailWalk', //setting the animation sprites
                 type: Q.SPRITE_ENEMY,
                 collisionMask: Q.SPRITE_DEFAULT | Q.SPRITE_FRIENDLY, //collide only with tile layer and player
                 vx: 30 //speed
@@ -36,8 +36,8 @@ Quintus.Enemies = function(Q) {
     Q.Sprite.extend("Fly", {
         init: function(p) {
             this._super(p, {
-                sheet: 'snailWalk',
-                sprite: "snailWalk", //setting the animation sprites
+                sheet: 'fly',
+                sprite: 'fly', //setting the animation sprites
                 type: Q.SPRITE_ENEMY,
                 collisionMask: Q.SPRITE_DEFAULT | Q.SPRITE_FRIENDLY, //collide only with tile layer and player
                 vy: 150, //speed
@@ -47,7 +47,15 @@ Quintus.Enemies = function(Q) {
 
             //add in gravity, stompable and animation
             this.add('2d, animation, stompable, flyingVertical');
+        },
+        step: function(dt) {
+            this.play("fly");
         }
+    });
+    
+    //register fly animations
+    Q.animations('fly', {
+        fly: {frames: [0, 1], rate: 0.9},
     });
 
     //-----------SHOT---------------
