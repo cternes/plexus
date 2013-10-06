@@ -13,7 +13,6 @@ Quintus.Overlays = function(Q) {
             label: stage.options.label}));
         
         button.on("click", function() {
-            Q.clearStages();
             Q.state.trigger("restartLevel");
         });
 

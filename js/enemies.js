@@ -38,17 +38,11 @@ Quintus.Enemies = function(Q) {
             this._super(p, {w: 3, h: 3, vx: 300, vy: 300});
 
             //this moves the shot straightly based on p.direction 
-            this.add('movingStraight');
+            this.add('movingStraight, deadly');
 
             this.on('hit', function(collision) {
                 //if the shot collides with an object it will be removed
                 this.destroy();
-
-                //if the shot collides with the player, the player is dead
-                if (collision.obj.isA("Player")) {
-                    Q.stageScene("endGame", 1, {label: "You Died"});
-                    collision.obj.destroy();
-                }
             });
         },
         draw: function(ctx) {
