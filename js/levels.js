@@ -50,7 +50,7 @@ Quintus.Levels = function(Q) {
         stage.insert(new Q.Water({x: 6475, y: 2078}));
 
         //add in a couple of enemies
-        stage.insert(new Q.Snail({x: 1530, y: 1260 }));
+        stage.insert(new Q.Snail({x: 1530, y: 1970 }));
         stage.insert(new Q.Snail({x: 2860, y: 2050 }));
         stage.insert(new Q.Snail({x: 3000, y: 2050 }));
 
