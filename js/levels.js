@@ -5,20 +5,20 @@ Quintus.Levels = function(Q) {
     //-------------LEVEL1---------------
     Q.scene("level1", function(stage) {
         setupParallaxBackground(stage, "background-sky.png");
-        setupCollisionLayer(stage, 1);
+        var tiles = setupCollisionLayer(stage, 1);
         
         //create the player and add him to the stage
         var player = stage.insert(new Q.Player());
         
         //add water
-        stage.insert(new Q.Water({x: 3115, y: 1028}));
-        stage.insert(new Q.Water({x: 4095, y: 1028}));
-        stage.insert(new Q.Water({x: 4165, y: 1028}));
+        stage.insert(new Q.Water({x: 3115, y: 2078}));
+        stage.insert(new Q.Water({x: 4095, y: 2078}));
+        stage.insert(new Q.Water({x: 4165, y: 2078}));
         
         //finally add in the door goal
-        stage.insert(new Q.Door({x: 6700, y: 925}));
+        stage.insert(new Q.Door({x: 6700, y: 1975}));
         
-        setupViewport(stage, player);
+        setupViewport(stage, player, tiles);
         setupLevelChange(stage);
     });
     
@@ -26,7 +26,7 @@ Quintus.Levels = function(Q) {
     Q.scene("level2", function(stage) {
         
         setupParallaxBackground(stage, "background-sky.png");
-        setupCollisionLayer(stage, 2);
+        var tiles = setupCollisionLayer(stage, 2);
 
         //create the player and add him to the stage
         var player = stage.insert(new Q.Player());
@@ -36,17 +36,17 @@ Quintus.Levels = function(Q) {
         //stage.insert(new Q.Star({x: 800, y: 0}));
 
         //add in a couple of enemies
-        stage.insert(new Q.Snail({x: 1530, y: 210 }));
-        stage.insert(new Q.Snail({x: 2860, y: 1000 }));
-        stage.insert(new Q.Snail({x: 3000, y: 1000 }));
+        stage.insert(new Q.Snail({x: 1530, y: 1260 }));
+        stage.insert(new Q.Snail({x: 2860, y: 2050 }));
+        stage.insert(new Q.Snail({x: 3000, y: 2050 }));
 
         // test
         //stage.insert(new Q.Shot({x: 800, y: 200, direction: 'left'}));
 
         //finally add in the door goal
-        stage.insert(new Q.Door({x: 6700, y: 925}));
+        stage.insert(new Q.Door({x: 6700, y: 1975}));
         
-        setupViewport(stage, player);
+        setupViewport(stage, player, tiles);
         setupLevelChange(stage);
     });
     
@@ -55,9 +55,9 @@ Quintus.Levels = function(Q) {
         stage.on("complete", function() { Q.state.trigger('nextLevel'); });
     }
     
-    function setupViewport(stage, player) {
-        stage.add("viewport").follow(player);
-        stage.viewport.offsetY = 250; //move the camera a little bit to the top to avoid seeing empty space
+    function setupViewport(stage, player, tiles) {
+        stage.add("viewport").follow(player,{x: true, y: true},{minX: 0, maxX: tiles.p.w, minY: 0, maxY: tiles.p.h});
+        //stage.viewport.offsetY = 250; //move the camera a little bit to the top to avoid seeing empty space
     }
     
     function setupParallaxBackground(stage, backgroundAsset) {
@@ -66,11 +66,11 @@ Quintus.Levels = function(Q) {
     
     function setupCollisionLayer(stage, levelIdx) {
         //add in a tile layer, and make it the collision layer
-        stage.collisionLayer(new Q.TileLayer({
-                            dataAsset: 'level' + levelIdx + '.tmx',
-                            sheet: 'tiles',
-                            tileW: 70,
-                            tileH: 70}));
+        return stage.collisionLayer(new Q.TileLayer({
+                                    dataAsset: 'level' + levelIdx + '.tmx',
+                                    sheet: 'tiles',
+                                    tileW: 70,
+                                    tileH: 70}));
     }
     
     //-------------CHANGE LEVEL BEHAVIOR---------------
@@ -87,11 +87,11 @@ Quintus.Levels = function(Q) {
     });
     
     Q.state.on("restartLevel", this, function() {
-        changeLevel(Q.state.get("level"));
+        changeLevel(Q.state.get("level"), 0);
     });
     
     function changeLevel(levelIdx) {
         Q.state.set("level", levelIdx);
-        Q.stageScene("level" + levelIdx);
+        Q.stageScene("level" + levelIdx, 0);
     }
 }

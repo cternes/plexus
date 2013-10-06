@@ -7,11 +7,11 @@ Quintus.Player = function(Q) {
             this._super(p, {
                 sheet: "player", // Setting a sprite sheet sets sprite width and height
                 sprite: "player", // Setting the animation sprites
-                x: 80, // starting location x
-                y: 700, // starting location y
+                x: 110, // starting location x
+                y: 1700, // starting location y
                 stars: 0,
                 jumpSpeed: -500,
-                speed: 300, //300
+                speed: 700, //300
                 gravity: 1.2,
                 type: Q.SPRITE_FRIENDLY,
             });
