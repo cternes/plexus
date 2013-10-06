@@ -65,7 +65,7 @@ Quintus.Levels = function(Q) {
     
     //-------------LEVEL3---------------
     Q.scene("level3", function(stage) {
-        setupParallaxBackground(stage, "background-sky.png");
+        setupParallaxBackground(stage, "background-castle.png");
         var tiles = setupCollisionLayer(stage, 3);
         
         //create the player and add him to the stage
@@ -73,6 +73,10 @@ Quintus.Levels = function(Q) {
         
         //add in a couple of enemies
         stage.insert(new Q.Fly({x: 700, y: 1800}));
+        
+        stage.insert(new Q.Snail({x: 1700, y: 1800}));
+        stage.insert(new Q.Slime({x: 2610, y: 2000}));
+        stage.insert(new Q.Slime({x: 3240, y: 2000}));
         
         setupViewport(stage, player, tiles);
         setupLevelChange(stage);

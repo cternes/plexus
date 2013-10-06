@@ -32,6 +32,38 @@ Quintus.Enemies = function(Q) {
         run_left: {frames: [2, 3], rate: 1},
     });
     
+    //-----------SLIME---------------
+    Q.Sprite.extend("Slime", {
+        init: function(p) {
+            this._super(p, {
+                sheet: 'slimeWalk',
+                sprite: 'slimeWalk', //setting the animation sprites
+                type: Q.SPRITE_ENEMY,
+                collisionMask: Q.SPRITE_DEFAULT | Q.SPRITE_FRIENDLY, //collide only with tile layer and player
+                vx: 150 //speed
+            });
+            
+            //fix sprite height
+            //this.p.h--;
+
+            //add in gravity, basic AI, stompable and animation
+            this.add('2d, animation, aiBounce, stompable');
+        },
+        step: function(dt) {
+            if (this.p.vx >= 0) {
+                this.play("run_left");
+            } else if (this.p.vx < 0) {
+                this.play("run_right");
+            }
+        }
+    });
+
+    //register snail animations
+    Q.animations('slimeWalk', {
+        run_right: {frames: [0, 1], rate: 1/3},
+        run_left: {frames: [2, 3], rate: 1/3},
+    });
+    
     //-----------FLY---------------
     Q.Sprite.extend("Fly", {
         init: function(p) {
