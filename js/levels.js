@@ -1,7 +1,6 @@
 ;
 Quintus.Levels = function(Q) {
     Q.state.set("level", 2);
-    
     //-------------LEVEL1---------------
     Q.scene("level1", function(stage) {
         setupParallaxBackground(stage, "background-sky.png");
@@ -59,6 +58,18 @@ Quintus.Levels = function(Q) {
 
         //finally add in the door goal
         stage.insert(new Q.Door({x: 6700, y: 1975}));
+        
+        setupViewport(stage, player, tiles);
+        setupLevelChange(stage);
+    });
+    
+    //-------------LEVEL3---------------
+    Q.scene("level3", function(stage) {
+        setupParallaxBackground(stage, "background-sky.png");
+        var tiles = setupCollisionLayer(stage, 3);
+        
+        //create the player and add him to the stage
+        var player = stage.insert(new Q.Player());
         
         setupViewport(stage, player, tiles);
         setupLevelChange(stage);
