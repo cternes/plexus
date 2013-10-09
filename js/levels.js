@@ -91,6 +91,9 @@ Quintus.Levels = function(Q) {
         stage.insert(new Q.Lava({x: 3815, y: 2070}));
         stage.insert(new Q.Lava({x: 3885, y: 2070}));
         
+        //finally add in the door goal
+        stage.insert(new Q.Door({x: 6700, y: 1975}));
+        
         setupViewport(stage, player, tiles);
         setupLevelChange(stage);
     });
