@@ -154,5 +154,40 @@
             }
         }
     });
+    
+    //entity checks for cliffs and will change walking direction if a cliff is near
+    Q.component('cliffChecker', {
+        added: function() {
+            var entity = this.entity;
+            entity.on('step', this, 'step');
+        },
+        step: function() {
+            var p = this.entity.p;
+            var dirX = p.vx/Math.abs(p.vx);
+            var ground = Q.stage().locate(p.x, p.y + p.h/2 + 1, Q.SPRITE_DEFAULT);
+            var nextTile = Q.stage().locate(p.x + dirX * p.w/2 + dirX, p.y + p.h/2 + 1, Q.SPRITE_DEFAULT);
+            
+            //if we are on ground and there is a cliff
+            if(!nextTile && ground) {
+                if(p.vx > 0) {
+                    if(p.defaultDirection === "right") {
+                        p.flip = "x";
+                    }
+                    else {
+                        p.flip = false;
+                    }
+                }
+                else {
+                    if(p.defaultDirection === "left") {
+                        p.flip = "x";
+                    }
+                    else {
+                        p.flip = false;
+                    }
+                }
+                p.vx = -p.vx;
+            }
+        }
+    });
 
 };

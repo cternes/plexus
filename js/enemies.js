@@ -47,7 +47,7 @@ Quintus.Enemies = function(Q) {
             //this.p.h--;
 
             //add in gravity, basic AI, stompable and animation
-            this.add('2d, animation, aiBounce, stompable');
+            this.add('2d, animation, aiBounce, stompable, cliffChecker');
         },
         step: function(dt) {
             if (this.p.vx >= 0) {
