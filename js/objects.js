@@ -31,4 +31,14 @@ Quintus.Objects = function(Q) {
         }
         
     });
+    
+    //----------LAVA--------------
+    Q.Sprite.extend("Lava", {
+        init: function(p) {
+            this._super(p, {sheet: 'lava'});
+            
+            this.add('deadly');
+        }
+        
+    });
 }

@@ -78,6 +78,10 @@ Quintus.Levels = function(Q) {
         stage.insert(new Q.Slime({x: 2610, y: 2000}));
         stage.insert(new Q.Slime({x: 3240, y: 2000}));
         
+        //add lava
+        stage.insert(new Q.Lava({x: 1925, y: 2070}));
+        stage.insert(new Q.Lava({x: 1995, y: 2070}));
+        
         setupViewport(stage, player, tiles);
         setupLevelChange(stage);
     });
