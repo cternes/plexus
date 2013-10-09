@@ -34,7 +34,6 @@ Quintus.Player = function(Q) {
                     //remove the player to prevent them from moving
                     this.destroy();
                 }
-                
             });
         },
         step: function(dt) {
@@ -55,6 +54,12 @@ Quintus.Player = function(Q) {
             
             if(this.p.landed > 0 && (Q.inputs['up'] || Q.inputs['action'])) {
                 Q.audio.play('jump.mp3');
+            }
+            
+            //check for level bounds
+            if(this.p.y > Q.stage()._collisionLayer.p.h) {
+                Q.stageScene("endGame",1, { label: "You Died" }); 
+                this.destroy();
             }
         }
     });

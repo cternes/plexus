@@ -73,14 +73,23 @@ Quintus.Levels = function(Q) {
         
         //add in a couple of enemies
         stage.insert(new Q.Fly({x: 700, y: 1800}));
+        stage.insert(new Q.Fly({x: 4790, y: 1900, rangeY: 30, vy: 70}));
+        stage.insert(new Q.Fly({x: 5075, y: 1900, rangeY: 30, vy: 70}));
         
         stage.insert(new Q.Snail({x: 1700, y: 1800}));
         stage.insert(new Q.Slime({x: 2610, y: 2000}));
         stage.insert(new Q.Slime({x: 3240, y: 2000}));
+        stage.insert(new Q.Slime({x: 4200, y: 1700}));
         
         //add lava
         stage.insert(new Q.Lava({x: 1925, y: 2070}));
         stage.insert(new Q.Lava({x: 1995, y: 2070}));
+        stage.insert(new Q.Lava({x: 3325, y: 2070}));
+        stage.insert(new Q.Lava({x: 3395, y: 2070}));
+        stage.insert(new Q.Lava({x: 3465, y: 2070}));
+        stage.insert(new Q.Lava({x: 3535, y: 2070}));
+        stage.insert(new Q.Lava({x: 3815, y: 2070}));
+        stage.insert(new Q.Lava({x: 3885, y: 2070}));
         
         setupViewport(stage, player, tiles);
         setupLevelChange(stage);
