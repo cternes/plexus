@@ -9,13 +9,8 @@ Quintus.Levels = function(Q) {
         //create the player and add him to the stage
         var player = stage.insert(new Q.Player());
         
-        //add water
-        stage.insert(new Q.Water({x: 3115, y: 2078}));
-        stage.insert(new Q.Water({x: 4095, y: 2078}));
-        stage.insert(new Q.Water({x: 4165, y: 2078}));
-        
-        //finally add in the door goal
-        stage.insert(new Q.Door({x: 6700, y: 1975}));
+        //load objects
+        stage.loadAssets("level1.json"); 
         
         setupViewport(stage, player, tiles);
         setupLevelChange(stage);
@@ -34,30 +29,11 @@ Quintus.Levels = function(Q) {
         //stage.insert(new Q.Star({x: 700, y: 210}));
         //stage.insert(new Q.Star({x: 800, y: 0}));
 
-        //add water
-        stage.insert(new Q.Water({x: 4585, y: 2078}));
-        stage.insert(new Q.Water({x: 4655, y: 2078}));
-        
-        stage.insert(new Q.Water({x: 5075, y: 2078}));
-        stage.insert(new Q.Water({x: 5145, y: 2078}));
-        
-        stage.insert(new Q.Water({x: 6125, y: 2078}));
-        stage.insert(new Q.Water({x: 6195, y: 2078}));
-        stage.insert(new Q.Water({x: 6265, y: 2078}));
-        stage.insert(new Q.Water({x: 6335, y: 2078}));
-        stage.insert(new Q.Water({x: 6405, y: 2078}));
-        stage.insert(new Q.Water({x: 6475, y: 2078}));
-
-        //add in a couple of enemies
-        stage.insert(new Q.Snail({x: 1530, y: 1970 }));
-        stage.insert(new Q.Snail({x: 2860, y: 2050 }));
-        stage.insert(new Q.Snail({x: 3000, y: 2050 }));
-
         // test
         //stage.insert(new Q.Shot({x: 800, y: 200, direction: 'left'}));
 
-        //finally add in the door goal
-        stage.insert(new Q.Door({x: 6700, y: 1975}));
+        //load objects
+        stage.loadAssets("level2.json"); 
         
         setupViewport(stage, player, tiles);
         setupLevelChange(stage);
