@@ -66,11 +66,11 @@ Quintus.Player = function(Q) {
 
     //register player animations
     Q.animations('player', {
-        run_right: {frames: [1, 2, 3, 4], rate: 1 / 5},
-        run_left: {frames: [5, 6, 7, 8], rate: 1 / 5},
+        run_right: {frames: [0, 1, 2, 3], rate: 1 / 5},
+        run_left: {frames: [4, 5, 6, 7], rate: 1 / 5},
         stand: {frames: [0], rate: 1 / 5},
-        jump_right: {frames: [9], rate: 1 / 5},
-        jump_left: {frames: [10], rate: 1 / 5},
+        jump_right: {frames: [8], rate: 1 / 5},
+        jump_left: {frames: [9], rate: 1 / 5},
     });
     
 }
