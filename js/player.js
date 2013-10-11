@@ -17,10 +17,10 @@ Quintus.Player = function(Q) {
             });
 
             //fix sprite width
-            this.p.w = this.p.w - 2;
+            //this.p.w = this.p.w - 2;
 
             //fix sprite height
-            this.p.h--;
+            //this.p.h--;
 
             //add in gravity, controls and animation
             this.add('2d, platformerControls, animation');
@@ -37,7 +37,7 @@ Quintus.Player = function(Q) {
             });
         },
         step: function(dt) {
-            if((this.p.vy < 0 || this.p.vy > 0) && this.p.vx > 0) {
+            if((this.p.vy < 0 || this.p.vy > 0) && this.p.vx >= 0) {
                 this.play("jump_right");
             }
             else if((this.p.vy < 0 || this.p.vy > 0) && this.p.vx < 0) {
