@@ -16,12 +16,6 @@ Quintus.Player = function(Q) {
                 type: Q.SPRITE_FRIENDLY,
             });
 
-            //fix sprite width
-            //this.p.w = this.p.w - 2;
-
-            //fix sprite height
-            //this.p.h--;
-
             //add in gravity, controls and animation
             this.add('2d, platformerControls, animation');
 
@@ -61,6 +55,9 @@ Quintus.Player = function(Q) {
                 Q.stageScene("endGame",1, { label: "You Died" }); 
                 this.destroy();
             }
+            
+            //DEBUG ONLY, show x position of player
+            //Q("UI.Text",1).items[0].p.label = "x:" + this.p.x + " y:" + this.p.y;
         }
     });
 

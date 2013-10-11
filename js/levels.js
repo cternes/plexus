@@ -63,7 +63,7 @@ Quintus.Levels = function(Q) {
         var player = stage.insert(new Q.Player());
         
         //load objects
-        //stage.loadAssets("level3.json"); 
+        stage.loadAssets("level4.json"); 
         
         setupViewport(stage, player, tiles);
         setupLevelChange(stage);

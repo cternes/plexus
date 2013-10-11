@@ -2,7 +2,7 @@
 Quintus.Overlays = function(Q) {
 
     //dialog overlay
-    Q.scene('endGame', function(stage) {
+    Q.scene("endGame", function(stage) {
         var container = stage.insert(new Q.UI.Container({
             x: Q.width / 2, y: Q.height / 2, fill: "rgba(0,0,0,0.5)"
         }));
