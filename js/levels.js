@@ -1,6 +1,6 @@
 ;
 Quintus.Levels = function(Q) {
-    Q.state.set("level", 4);
+    Q.state.set("level", 5);
     //-------------LEVEL1---------------
     Q.scene("level1", function(stage) {
         setupParallaxBackground(stage, "background-sky.png");
@@ -64,6 +64,21 @@ Quintus.Levels = function(Q) {
         
         //load objects
         stage.loadAssets("level4.json"); 
+        
+        setupViewport(stage, player, tiles);
+        setupLevelChange(stage);
+    });
+    
+    //-------------LEVEL4---------------
+    Q.scene("level5", function(stage) {
+        setupParallaxBackground(stage, "background-sky.png");
+        var tiles = setupCollisionLayer(stage, 5);
+        
+        //create the player and add him to the stage
+        var player = stage.insert(new Q.Player());
+        
+        //load objects
+        stage.loadAssets("level5.json"); 
         
         setupViewport(stage, player, tiles);
         setupLevelChange(stage);
