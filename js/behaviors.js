@@ -104,7 +104,8 @@
                 this.on("bump.left,bump.right,bump.bottom",function(collision) {
                     if(collision.obj.isA("Player")) { 
                       Q.stageScene("endGame",1, { label: "You Died" }); 
-                      collision.obj.destroy();
+                      //collision.obj.destroy();
+                      collision.obj.p.isDead = true;
                     }
                 });
                 this.on("bump.top",function(collision) {

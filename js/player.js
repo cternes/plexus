@@ -31,7 +31,11 @@ Quintus.Player = function(Q) {
             });
         },
         step: function(dt) {
-            if((this.p.vy < 0 || this.p.vy > 0) && this.p.vx >= 0) {
+            if(this.p.isDead) {
+                this.p.collisionMask = Q.SPRITE_NONE;
+                this.play("dead");
+            }
+            else if((this.p.vy < 0 || this.p.vy > 0) && this.p.vx >= 0) {
                 this.play("jump_right");
             }
             else if((this.p.vy < 0 || this.p.vy > 0) && this.p.vx < 0) {
@@ -68,6 +72,7 @@ Quintus.Player = function(Q) {
         stand: {frames: [0], rate: 1 / 5},
         jump_right: {frames: [8], rate: 1 / 5},
         jump_left: {frames: [9], rate: 1 / 5},
+        dead: {frames: [10], rate: 1 / 5},
     });
     
 }

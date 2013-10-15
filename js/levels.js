@@ -1,6 +1,6 @@
 ;
 Quintus.Levels = function(Q) {
-    Q.state.set("level", 5);
+    Q.state.set("level", 3);
     //-------------LEVEL1---------------
     Q.scene("level1", function(stage) {
         setupParallaxBackground(stage, "background-sky.png");
