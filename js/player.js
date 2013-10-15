@@ -56,6 +56,7 @@ Quintus.Player = function(Q) {
             
             //check for level bounds
             if(this.p.y > Q.stage()._collisionLayer.p.h) {
+                this.p.isDead = true;
                 Q.stageScene("endGame",1, { label: "You Died" }); 
                 this.destroy();
             }
