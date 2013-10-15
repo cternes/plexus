@@ -18,6 +18,15 @@ Quintus.Player = function(Q) {
 
             //add in gravity, controls and animation
             this.add('2d, platformerControls, animation');
+            
+            Q.state.on("playerDead",this, function() {
+                if(!this.p.isDead) {
+                    Q.audio.play('dead.mp3');
+                    Q.stageScene("endGame",1, { label: "You Died" });     
+                }
+                
+                this.p.isDead = true;
+            });
 
             //hit.sprite is called everytime the player collides with a sprite
             this.on("hit.sprite", function(collision) {
@@ -56,8 +65,7 @@ Quintus.Player = function(Q) {
             
             //check for level bounds
             if(this.p.y > Q.stage()._collisionLayer.p.h) {
-                this.p.isDead = true;
-                Q.stageScene("endGame",1, { label: "You Died" }); 
+                Q.state.trigger('playerDead');
                 this.destroy();
             }
             

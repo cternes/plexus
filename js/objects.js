@@ -25,7 +25,7 @@ Quintus.Objects = function(Q) {
     //----------WATER--------------
     Q.Sprite.extend("Water", {
         init: function(p) {
-            this._super(p, {sheet: 'water'});
+            this._super(p, {sheet: 'water', type: Q.SPRITE_ENEMY});
             
             this.add('deadly');
         }
@@ -35,7 +35,7 @@ Quintus.Objects = function(Q) {
     //----------LAVA--------------
     Q.Sprite.extend("Lava", {
         init: function(p) {
-            this._super(p, {sheet: 'lava'});
+            this._super(p, {sheet: 'lava', type: Q.SPRITE_ENEMY});
             
             this.add('deadly');
         }

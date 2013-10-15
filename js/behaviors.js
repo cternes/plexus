@@ -103,8 +103,7 @@
             this.entity.on("hit", function(collision) {
                 this.on("bump.left,bump.right,bump.bottom",function(collision) {
                     if(collision.obj.isA("Player")) { 
-                      Q.stageScene("endGame",1, { label: "You Died" }); 
-                      collision.obj.p.isDead = true;
+                      Q.state.trigger('playerDead');
                     }
                 });
                 this.on("bump.top",function(collision) {
@@ -121,8 +120,7 @@
         added: function() {
             this.entity.on("hit", function(collision) {
                 if(collision.obj.isA("Player")) { 
-                    Q.stageScene("endGame",1, { label: "You Died" }); 
-                    collision.obj.p.isDead = true;
+                    Q.state.trigger('playerDead');
                 }
             });
         }
