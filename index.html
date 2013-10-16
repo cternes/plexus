@@ -60,7 +60,7 @@
                         "level1.tmx, level2.tmx, level3.tmx, level4.tmx, level5.tmx,"+
                         "level1.json, level2.json, level3.json, level4.json, level5.json,"+
                         "background-sky.png, background-castle.png,"+
-                        "jump.mp3, dead.mp3, track_01_init.mp3",
+                        "jump.mp3, dead.mp3, track_01.mp3, track_02.mp3, track_03.mp3",
                         // The callback will be triggered when everything is loaded
                                 function() {
                                     // Sprites sheets can be created manually
@@ -71,7 +71,7 @@
 
                                     // Finally, call stageScene to run the game
                                     Q.stageScene("level1");
-                                    Q.audio.play('track_01_init.mp3',{ loop: true });
+                                    Q.audio.playlist(['track_01.mp3', 'track_02.mp3', 'track_03.mp3']);
                                     //Q.stageScene("gameStats", 1);
                                 });
 
