@@ -90,8 +90,18 @@ Quintus.Levels = function(Q) {
     }
     
     function setupViewport(stage, player, tiles) {
-        stage.add("viewport").follow(player,{x: true, y: true},{minX: 0, maxX: tiles.p.w, minY: 0, maxY: tiles.p.h});
-        //stage.viewport.offsetY = 250; //move the camera a little bit to the top to avoid seeing empty space
+        var scale = 1;
+        var touchControlSize = 0;
+        
+        //if we're on a touch device, we have to move the viewport up a little bit in order 
+        //to avoid overlapping of the UI touch controls. Scale will also apply only on touch devices.
+        if(Q.touchDevice) {
+            scale = 2;
+            touchControlSize = 255;
+        }
+        
+        stage.add("viewport").follow(player,{x: true, y: true},{minX: 0, maxX: tiles.p.w * scale, minY: 0, maxY: tiles.p.h * scale + touchControlSize});
+        stage.viewport.scale = scale;
     }
     
     function setupParallaxBackground(stage, backgroundAsset) {
