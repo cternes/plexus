@@ -48,6 +48,11 @@ Quintus.Levels = function(Q) {
         setupLevel(8, "background-sky.png", stage);
     });
     
+    //-------------LEVEL8---------------
+    Q.scene("level9", function(stage) {
+        setupLevel(9, "background-castle.png", stage);
+    });
+    
     function setupLevel(levelId, backgroundImage, stage) {
             //setup background and collision layer
             setupParallaxBackground(stage, backgroundImage);
