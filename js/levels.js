@@ -1,6 +1,6 @@
 ;
 Quintus.Levels = function(Q) {
-    Q.state.set("level", 16);
+    Q.state.set("level", 17);
     //-------------LEVEL1---------------
     Q.scene("level1", function(stage) {
         setupLevel(1, "background-sky.png", stage);
@@ -86,6 +86,11 @@ Quintus.Levels = function(Q) {
     //-------------LEVEL16---------------
     Q.scene("level16", function(stage) {
         setupLevel(16, "background-castle.png", stage);
+    });
+    
+    //-------------LEVEL17---------------
+    Q.scene("level17", function(stage) {
+        setupLevel(17, "background-castle.png", stage);
     });
     
     function setupLevel(levelId, backgroundImage, stage) {
