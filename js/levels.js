@@ -1,30 +1,13 @@
 ;
 Quintus.Levels = function(Q) {
-    Q.state.set("level", 1);
+    Q.state.set("level", 6);
     //-------------LEVEL1---------------
     Q.scene("level1", function(stage) {
-        setupParallaxBackground(stage, "background-sky.png");
-        var tiles = setupCollisionLayer(stage, 1);
-        
-        //create the player and add him to the stage
-        var player = stage.insert(new Q.Player());
-        
-        //load objects
-        stage.loadAssets("level1.json"); 
-        
-        setupViewport(stage, player, tiles);
-        setupLevelChange(stage);
+        setupLevel(1, "background-sky.png", stage);
     });
     
     //-------------LEVEL2---------------
     Q.scene("level2", function(stage) {
-        
-        setupParallaxBackground(stage, "background-sky.png");
-        var tiles = setupCollisionLayer(stage, 2);
-
-        //create the player and add him to the stage
-        var player = stage.insert(new Q.Player());
-
         //add in a couple of stars
         //stage.insert(new Q.Star({x: 700, y: 210}));
         //stage.insert(new Q.Star({x: 800, y: 0}));
@@ -32,57 +15,43 @@ Quintus.Levels = function(Q) {
         // test
         //stage.insert(new Q.Shot({x: 800, y: 200, direction: 'left'}));
 
-        //load objects
-        stage.loadAssets("level2.json"); 
-        
-        setupViewport(stage, player, tiles);
-        setupLevelChange(stage);
+        setupLevel(2, "background-sky.png", stage);
     });
     
     //-------------LEVEL3---------------
     Q.scene("level3", function(stage) {
-        setupParallaxBackground(stage, "background-castle.png");
-        var tiles = setupCollisionLayer(stage, 3);
-        
-        //create the player and add him to the stage
-        var player = stage.insert(new Q.Player());
-        
-        //load objects
-        stage.loadAssets("level3.json"); 
-        
-        setupViewport(stage, player, tiles);
-        setupLevelChange(stage);
+        setupLevel(3, "background-castle.png", stage);
     });
     
     //-------------LEVEL4---------------
     Q.scene("level4", function(stage) {
-        setupParallaxBackground(stage, "background-sky.png");
-        var tiles = setupCollisionLayer(stage, 4);
-        
-        //create the player and add him to the stage
-        var player = stage.insert(new Q.Player());
-        
-        //load objects
-        stage.loadAssets("level4.json"); 
-        
-        setupViewport(stage, player, tiles);
-        setupLevelChange(stage);
+        setupLevel(4, "background-sky.png", stage);
     });
     
-    //-------------LEVEL4---------------
+    //-------------LEVEL5---------------
     Q.scene("level5", function(stage) {
-        setupParallaxBackground(stage, "background-sky.png");
-        var tiles = setupCollisionLayer(stage, 5);
-        
-        //create the player and add him to the stage
-        var player = stage.insert(new Q.Player());
-        
-        //load objects
-        stage.loadAssets("level5.json"); 
-        
-        setupViewport(stage, player, tiles);
-        setupLevelChange(stage);
+        setupLevel(5, "background-sky.png", stage);
     });
+    
+    //-------------LEVEL6---------------
+    Q.scene("level6", function(stage) {
+        setupLevel(6, "background-castle.png", stage);
+    });
+    
+    function setupLevel(levelId, backgroundImage, stage) {
+            //setup background and collision layer
+            setupParallaxBackground(stage, backgroundImage);
+            var tiles = setupCollisionLayer(stage, levelId);
+
+            //create the player and add him to the stage
+            var player = stage.insert(new Q.Player());
+
+            //load objects
+            stage.loadAssets("level" + levelId + ".json"); 
+
+            setupViewport(stage, player, tiles);
+            setupLevelChange(stage);
+    };
     
     function setupLevelChange(stage) {
         //next level
