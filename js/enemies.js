@@ -78,7 +78,7 @@ Quintus.Enemies = function(Q) {
             });
 
             //add in gravity, stompable and animation
-            this.add('2d, animation, stompable, flyingVertical');
+            this.add('2d, animation, stompable, deadly, flyingVertical');
         },
         step: function(dt) {
             this.play("fly");

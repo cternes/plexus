@@ -70,7 +70,9 @@ Quintus.Player = function(Q) {
             }
             
             //DEBUG ONLY, show x position of player
-            Q("UI.Text",1).items[0].p.label = "x:" + Math.floor(this.p.x) + " y:" + Math.floor(this.p.y);
+            if(Q.state.get("debug")) {
+                Q("UI.Text", 1).items[0].p.label = "x:" + Math.floor(this.p.x) + " y:" + Math.floor(this.p.y);        
+            }
         }
     });
 
