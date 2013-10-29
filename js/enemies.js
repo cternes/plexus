@@ -40,14 +40,16 @@ Quintus.Enemies = function(Q) {
                 sprite: 'slimeWalk', //setting the animation sprites
                 type: Q.SPRITE_ENEMY,
                 collisionMask: Q.SPRITE_DEFAULT | Q.SPRITE_FRIENDLY, //collide only with tile layer and player
-                vx: 150 //speed
+                vx: 150, //speed
+                isCliffChecker: true //appends cliffChecker if true
             });
             
-            //fix sprite height
-            //this.p.h--;
-
+            if(this.p.isCliffChecker) {
+                this.add('cliffChecker');
+            }
+            
             //add in gravity, basic AI, stompable and animation
-            this.add('2d, animation, aiBounce, stompable, cliffChecker');
+            this.add('2d, animation, aiBounce, stompable');
         },
         step: function(dt) {
             if (this.p.vx >= 0) {

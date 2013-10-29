@@ -194,6 +194,10 @@ Quintus.Levels = function(Q) {
     });
     
     function changeLevel(levelIdx) {
+        if(Q.state.get("debug")) {
+            Q.stageScene("gameStats", 1);    
+        }
+        
         Q.state.set("level", levelIdx);
         Q.stageScene("level" + levelIdx, 0);
     }

@@ -143,12 +143,16 @@
         },
         step: function() {
             var p = this.entity.p;
+            var dirY = p.vy/Math.abs(p.vy);
     
             if(p.y - p.initialY >= p.rangeY && p.vy > 0) {
                 p.vy = -p.vy;
             } 
             else if(-p.y + p.initialY >= p.rangeY && p.vy < 0) {
                 p.vy = -p.vy;
+            }
+            else if(p.vy === 0) {
+                p.flip = "y";
             }
         }
     });
