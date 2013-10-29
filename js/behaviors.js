@@ -101,11 +101,18 @@
     Q.component('stompable', {
         added: function() {
             this.entity.on("hit", function(collision) {
-                this.on("bump.left,bump.right,bump.bottom",function(collision) {
+                if(collision.normalY < -0.3) {
+                    if(collision.obj.isA("Player")) { 
+                      Q.state.trigger('playerDead');
+                    }
+                }
+                
+                this.on("bump.bottom,bump.left,bump.right",function(collision) {
                     if(collision.obj.isA("Player")) { 
                       Q.state.trigger('playerDead');
                     }
                 });
+                
                 this.on("bump.top",function(collision) {
                     if(collision.obj.isA("Player")) { 
                       this.destroy();
@@ -134,6 +141,7 @@
         added: function() {
             var entity = this.entity;
             entity.p.initialY = entity.p.y; //store initial y position
+            entity.p.initialVy = entity.p.vy; //store initial speed
             
             if(entity.p.rangeY === undefined) {
                 entity.p.rangeY = 100; 
@@ -143,7 +151,7 @@
         },
         step: function() {
             var p = this.entity.p;
-            var dirY = p.vy/Math.abs(p.vy);
+            var dirY = p.vy;
     
             if(p.y - p.initialY >= p.rangeY && p.vy > 0) {
                 p.vy = -p.vy;
@@ -152,7 +160,7 @@
                 p.vy = -p.vy;
             }
             else if(p.vy === 0) {
-                p.flip = "y";
+                p.vy = this.entity.p.initialVy; //restore movement after object hit
             }
         }
     });

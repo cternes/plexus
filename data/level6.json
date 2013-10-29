@@ -2,7 +2,6 @@
 ["Slime", { "x": 2354, "y": 1785, "vx": 75, "isCliffChecker": false}],
 ["Slime", { "x": 1999, "y": 1785, "vx": 75, "isCliffChecker": false}],
 ["Slime", { "x": 2168, "y": 1785, "vx": 75, "isCliffChecker": false}],
-["Fly", { "x": 2838, "y": 1680, "rangeY": 50}],
 ["Fly", { "x": 3389, "y": 1785, "rangeY": 150}],
 ["Door", { "x": 6700, "y": 1975 }]
 ]
