@@ -101,24 +101,36 @@
     Q.component('stompable', {
         added: function() {
             this.entity.on("hit", function(collision) {
-                if(collision.normalY < -0.3) {
+                playerDead = function(collision) {
                     if(collision.obj.isA("Player")) { 
                       Q.state.trigger('playerDead');
                     }
+                };
+                
+                objectDestroyed = function(obj, collision) {
+                    if(collision.obj.isA("Player")) { 
+                      obj.destroy();
+                      collision.obj.p.vy = -400;
+                    }
+                };
+                
+                //hit from bottom
+                if(collision.normalY < -0.3) {
+                    playerDead(collision);
+                }
+                //stomp on top
+                else if(collision.normalY > 0.3) {
+                    objectDestroyed(this, collision);
                 }
                 
                 this.on("bump.bottom,bump.left,bump.right",function(collision) {
-                    if(collision.obj.isA("Player")) { 
-                      Q.state.trigger('playerDead');
-                    }
+                    playerDead(collision);
                 });
                 
                 this.on("bump.top",function(collision) {
-                    if(collision.obj.isA("Player")) { 
-                      this.destroy();
-                      collision.obj.p.vy = -400;
-                    }
-                });   
+                    objectDestroyed(this, collision);
+                });
+                
             });
         }
     });
