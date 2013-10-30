@@ -8,11 +8,16 @@ Quintus.Enemies = function(Q) {
                 sprite: 'snailWalk', //setting the animation sprites
                 type: Q.SPRITE_ENEMY,
                 collisionMask: Q.SPRITE_DEFAULT | Q.SPRITE_FRIENDLY, //collide only with tile layer and player
-                vx: 30 //speed
+                vx: 30, //speed
+                isCliffChecker: true //appends cliffChecker if true
             });
             
             //fix sprite height
             this.p.h--;
+            
+            if(this.p.isCliffChecker) {
+                this.add('cliffChecker');
+            }
 
             //add in gravity, basic AI, stompable and animation
             this.add('2d, animation, aiBounce, stompable');
