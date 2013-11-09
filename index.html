@@ -86,11 +86,11 @@
                                     // Or from a .json asset that defines sprite locations
                                     Q.compileSheets("sprites.png", "sprites.json");
 
-                                    var startLevel = 8;
+                                    var startLevel = 10;
                                     // Finally, call stageScene to run the game
                                     Q.stageScene("level" + startLevel);
                                     Q.state.set("level", startLevel);
-                                    Q.state.set("debug", false);
+                                    Q.state.set("debug", true);
                                     
                                     //play music only on non-touch devices
                                     if(!Q.touchDevice) {
