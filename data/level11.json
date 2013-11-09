@@ -1,3 +1,19 @@
 [
+["Fly", { "x": 773, "y": 1900, "vy": 250, "rangeY": 70 }],
+["Snail", { "x": 1378, "y": 1715, "isCliffChecker": false, "vx": -30 }],
+["Snail", { "x": 1259, "y": 1715, "isCliffChecker": false, "vx": -30 }],
+["Snail", { "x": 1234, "y": 1785, "isCliffChecker": false, "vx": -30 }],
+["Snail", { "x": 1164, "y": 1855, "isCliffChecker": false, "vx": -30 }],
+["Slime", { "x": 1938, "y": 1925 }],
+["Slime", { "x": 2328, "y": 1925 }],
+["Slime", { "x": 2756, "y": 1925 }],
+["Slime", { "x": 2881, "y": 1925 }],
+["Slime", { "x": 3595, "y": 1925, "vx": 250 }],
+["Slime", { "x": 4724, "y": 1995 }],
+["Slime", { "x": 4454, "y": 1995 }],
+["Snail", { "x": 5063, "y": 1925 }],
+["Snail", { "x": 4813, "y": 1925 }],
+["Fly", { "x": 5868, "y": 1855, "vy": 250, "rangeY": 70 }],
+["Fly", { "x": 6140, "y": 1800, "vy": 250, "rangeY": 70 }],
 ["Door", { "x": 6700, "y": 1975 }]
 ]
