@@ -65,8 +65,42 @@ Quintus.Enemies = function(Q) {
         }
     });
 
-    //register snail animations
+    //register slime animations
     Q.animations('slimeWalk', {
+        run_right: {frames: [0, 1], rate: 1/3},
+        run_left: {frames: [2, 3], rate: 1/3},
+    });
+    
+    //-----------SLIME GREEN---------------
+    Q.Sprite.extend("SlimeGreen", {
+        init: function(p) {
+            this._super(p, {
+                sheet: 'slimeGreenWalk',
+                sprite: 'slimeGreenWalk', //setting the animation sprites
+                type: Q.SPRITE_ENEMY,
+                collisionMask: Q.SPRITE_DEFAULT | Q.SPRITE_FRIENDLY, //collide only with tile layer and player
+                vx: 150, //speed
+                isCliffChecker: true //appends cliffChecker if true
+            });
+            
+            if(this.p.isCliffChecker) {
+                this.add('cliffChecker');
+            }
+            
+            //add in gravity, basic AI, stompable and animation
+            this.add('2d, animation, aiBounce, deadly');
+        },
+        step: function(dt) {
+            if (this.p.vx >= 0) {
+                this.play("run_left");
+            } else if (this.p.vx < 0) {
+                this.play("run_right");
+            }
+        }
+    });
+
+    //register slime animations
+    Q.animations('slimeGreenWalk', {
         run_right: {frames: [0, 1], rate: 1/3},
         run_left: {frames: [2, 3], rate: 1/3},
     });
