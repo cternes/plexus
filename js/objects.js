@@ -45,9 +45,9 @@ Quintus.Objects = function(Q) {
     //-----------SPIKES---------------
     Q.Sprite.extend("Spikes", {
         init: function(p) {
-            this._super(p, {sheet: 'spikes', type: Q.SPRITE_ENEMY});
+            this._super(p, {sheet: 'spikes', type: Q.SPRITE_ENEMY, collisionMask: Q.SPRITE_DEFAULT | Q.SPRITE_FRIENDLY});
             
-            this.add('deadly');
+            this.add('2d, deadly');
         }
     });
 }
