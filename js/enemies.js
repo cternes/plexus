@@ -130,6 +130,32 @@ Quintus.Enemies = function(Q) {
     Q.animations('fly', {
         fly: {frames: [0, 1], rate: 0.9},
     });
+    
+    //-----------FLY---------------
+    Q.Sprite.extend("FlyGreen", {
+        init: function(p) {
+            this._super(p, {
+                sheet: 'flyGreen',
+                sprite: 'flyGreen', //setting the animation sprites
+                type: Q.SPRITE_ENEMY,
+                collisionMask: Q.SPRITE_DEFAULT | Q.SPRITE_FRIENDLY, //collide only with tile layer and player
+                vy: 150, //speed
+                rangeY: 100, //range
+                gravity: 0
+            });
+
+            //add in gravity, stompable and animation
+            this.add('2d, animation, deadly, flyingVertical');
+        },
+        step: function(dt) {
+            this.play("flyGreen");
+        }
+    });
+    
+    //register fly animations
+    Q.animations('flyGreen', {
+        flyGreen: {frames: [0, 1], rate: 0.9},
+    });
 
     //-----------SHOT---------------
     Q.Sprite.extend("Shot", {
