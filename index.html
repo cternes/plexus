@@ -61,15 +61,34 @@
                     musicTitles = "";
                 }
  
-                //the number of supported levels
-                var numberOfLevels = 24; 
-                
+		var dateTime = new Date();
+		var month = dateTime.getMonth();
+		var date = dateTime.getDate();
+                var isDebug = false;
+
                 var levelTmxFiles = "";
                 var levelJsonFiles = "";
-                for(var i=0; i < numberOfLevels; i++) {
-                    levelTmxFiles += "level" + (i+1) + ".tmx,";
-                    levelJsonFiles += "level" + (i+1) + ".json,";
-                }
+
+                        if (isDebug) {
+                            var numberOfLevels = 24;
+
+                            for (var i = 0; i < numberOfLevels; i++) {
+                                levelTmxFiles += loadSpecificTmx(i+1);
+                                levelJsonFiles += loadSpecificJson(i+1);
+                            }
+                        }
+                        else {
+                            levelTmxFiles = loadSpecificTmx(date);
+                            levelJsonFiles = loadSpecificJson(date);
+                        }
+
+                        function loadSpecificJson(date) {
+                            return "level" + date + ".json,";
+                        }
+
+                        function loadSpecificTmx(date) {
+                            return "level" + date + ".tmx,";
+                        }
  
                 // Q.load can be called at any time to load additional assets
                 // assets that are already loaded will be skipped
@@ -86,11 +105,18 @@
                                     // Or from a .json asset that defines sprite locations
                                     Q.compileSheets("sprites.png", "sprites.json");
 
-                                    var startLevel = 24;
-                                    // Finally, call stageScene to run the game
-                                    Q.stageScene("level" + startLevel);
-                                    Q.state.set("level", startLevel);
-                                    Q.state.set("debug", true);
+                                    var startLevel = date;
+                                    
+                                    if(month !== 11 && !isDebug) {
+                                        Q.stageScene("notDecemberWarning", 1);
+                                    }
+                                    else {
+                                       // call stageScene to run the game
+                                        Q.stageScene("level" + startLevel);
+                                        Q.state.set("level", startLevel);
+                                        Q.state.set("debug", isDebug);      
+                                    }
+                                    
                                     
                                     //play music only on non-touch devices
                                     if(!Q.touchDevice) {

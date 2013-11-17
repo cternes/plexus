@@ -143,8 +143,13 @@ Quintus.Levels = function(Q) {
     };
     
     function setupLevelChange(stage) {
-        //next level
-        stage.on("complete", function() { Q.state.trigger('nextLevel'); });
+            //next level
+            //stage.on("complete", function() { Q.state.trigger('nextLevel'); });
+        stage.on("complete", function() {
+            var level = Q.state.get("level");
+            var text = Q.asset("level" + level + ".json")[0][1].label;
+            Q.stageScene("levelCompleted",2, { label: text }); 
+        });
     }
     
     function setupViewport(stage, player, tiles) {

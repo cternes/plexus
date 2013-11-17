@@ -50,4 +50,11 @@ Quintus.Objects = function(Q) {
             this.add('2d, deadly');
         }
     });
+    
+    //-----------DUMMY OBJECT---------------
+    Q.Sprite.extend("Text", {
+        init: function(p) {
+            this._super(p);
+        }
+    });
 }

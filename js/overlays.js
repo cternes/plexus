@@ -21,6 +21,48 @@ Quintus.Overlays = function(Q) {
         container.fit(20);
     });
     
+    // not december warning
+    Q.scene("notDecemberWarning", function(stage) {
+        var statsContainer = stage.insert(new Q.UI.Container({
+            fill: "rgba(240,202,94,0.5)",
+            x: Q.width / 2,
+            y: Q.height / 2,
+            border: 0,
+            shadow: 0,
+            shadowColor: "rgba(0,0,0,0.5)",
+            w: Q.width / 2,
+            h: 150
+        }));
+
+        stage.insert(new Q.UI.Text({ 
+            label: "Schade, es ist noch nicht Dezember.",
+            color: "white",
+            x: 0,
+            y: 0
+        }),statsContainer);
+    });
+    
+    // level completed
+    Q.scene("levelCompleted", function(stage) {
+        var statsContainer = stage.insert(new Q.UI.Container({
+            fill: "rgba(94,240,89,0.5)",
+            x: Q.width / 2,
+            y: Q.height / 2,
+            border: 0,
+            shadow: 0,
+            shadowColor: "rgba(0,0,0,0.5)",
+            w: Q.width / 2,
+            h: 150
+        }));
+
+        stage.insert(new Q.UI.Text({ 
+            label: stage.options.label,
+            color: "white",
+            x: 0,
+            y: 0
+        }),statsContainer);
+    });
+    
     Q.scene("gameStats", function(stage) {
         var statsContainer = stage.insert(new Q.UI.Container({
             fill: "gray",
