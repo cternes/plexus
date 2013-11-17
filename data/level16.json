@@ -1,4 +1,5 @@
 [
+["Text", { "label": "Geschafft!" }],
 ["Spikes", { "x": 805, "y": 1878 }],
 ["Spikes", { "x": 945, "y": 1878 }],
 ["SlimeGreen", { "x": 644, "y": 1995, "vx": 250 }],

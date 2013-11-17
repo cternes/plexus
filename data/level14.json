@@ -1,4 +1,5 @@
 [
+["Text", { "label": "Geschafft!" }],
 ["SlimeGreen", { "x": 1429, "y": 1785, "vx": -180, "isCliffChecker": false }],
 ["SlimeGreen", { "x": 1359, "y": 1855, "vx": -210, "isCliffChecker": false }],
 ["Slime", { "x": 1635, "y": 1995, "vx": 210 }],

@@ -1,4 +1,5 @@
 [
+["Text", { "label": "Geschafft!" }],
 ["Fly", { "x": 773, "y": 1900, "vy": 250, "rangeY": 70 }],
 ["Snail", { "x": 1378, "y": 1715, "isCliffChecker": false, "vx": -30 }],
 ["Snail", { "x": 1259, "y": 1715, "isCliffChecker": false, "vx": -30 }],

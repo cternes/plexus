@@ -1,4 +1,5 @@
 [
+["Text", { "label": "Geschafft!" }],
 ["SlimeGreen", { "x": 694, "y": 1855}],
 ["FlyGreen", { "x": 1200, "y": 1855, "vy": 240}],
 ["FlyGreen", { "x": 2563, "y": 1925, "vy": -290 }],
