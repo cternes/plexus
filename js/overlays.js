@@ -82,12 +82,15 @@ Quintus.Overlays = function(Q) {
             y: 0
         }),statsContainer);
         
+        var level = Q.state.get("level");
+        
         var coins = stage.insert(new Q.UI.Text({ 
-            label: "Coins x 0",
+            label: "Level: " + level,
             color: "white",
             x: 300,
             y: 0
         }),statsContainer);
+        
         
     });
 }
