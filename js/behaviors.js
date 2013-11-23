@@ -109,6 +109,9 @@
                 
                 objectDestroyed = function(obj, collision) {
                     if(collision.obj.isA("Player")) { 
+                      if(!obj.isDestroyed) {
+                        Q.audio.play('enemy_dead.mp3');    
+                      }
                       obj.destroy();
                       collision.obj.p.vy = -400;
                     }
