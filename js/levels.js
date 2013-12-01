@@ -172,6 +172,15 @@ Quintus.Levels = function(Q) {
     }
     
     function setupCollisionLayer(stage, levelIdx) {
+        var background = new Q.TileLayer({
+                                dataAsset: 'level' + levelIdx + '.tmx',
+                                layerIndex: 1,
+                                sheet: 'tiles',
+                                tileW: 70,
+                                tileH: 70,
+                                type: Q.SPRITE_NONE });
+        stage.insert(background);
+        
         //add in a tile layer, and make it the collision layer
         return stage.collisionLayer(new Q.TileLayer({
                                     dataAsset: 'level' + levelIdx + '.tmx',
@@ -182,15 +191,21 @@ Quintus.Levels = function(Q) {
     
     //-------------CHANGE LEVEL BEHAVIOR---------------
     Q.state.on("nextLevel",this, function() {
-        var level = Q.state.get("level");
-        level += 1;
-        changeLevel(level);
+        //level change only possible on debug mode
+        if(Q.state.get("debug")) {
+           var level = Q.state.get("level");
+            level += 1;
+            changeLevel(level);
+        }
     });
     
     Q.state.on("prevLevel",this, function() {
-        var level = Q.state.get("level");
-        level -= 1;
-        changeLevel(level);
+        //level change only possible on debug mode
+        if(Q.state.get("debug")) {
+            var level = Q.state.get("level");
+            level -= 1;
+            changeLevel(level);
+        }
     });
     
     Q.state.on("restartLevel", this, function() {
