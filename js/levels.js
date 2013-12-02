@@ -210,6 +210,7 @@ Quintus.Levels = function(Q) {
     
     Q.state.on("restartLevel", this, function() {
         Q.clearStage(1); //remove overlays
+        Q.clearStage(2); //remove overlays
         changeLevel(Q.state.get("level"), 0);
     });
     
